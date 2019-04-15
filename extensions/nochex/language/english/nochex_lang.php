@@ -18,7 +18,7 @@ $lang['label_status'] 	        = 'Status';
 $lang['text_tab_general'] 	    = 'General';
 
 $lang['help_order_total'] 		= 'The total amount the order must reach before this payment gateway becomes active';
-$lang['help_order_status'] 	    = 'Default order status when paypal is the payment method';
+$lang['help_order_status'] 	    = 'Default order status when Nochex is the payment method';
 
 $lang['alert_min_total'] 		= 'Order total is below the payment minimum order total.';
 $lang['alert_min_order_total'] 	= 'You need to spend %s or more to use this payment method</p>';

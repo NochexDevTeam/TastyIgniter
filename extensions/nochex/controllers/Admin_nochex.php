@@ -37,8 +37,7 @@ class Admin_nochex extends Admin_Controller {
 		} else {
 			$data['merchantID'] = '';
 		}
-
-
+  
 		if (isset($this->input->post['api_mode'])) {
 			$data['api_mode'] = $this->input->post('api_mode');
 		} else if (isset($ext_data['api_mode'])) {
@@ -84,6 +83,30 @@ class Admin_nochex extends Admin_Controller {
 			$data['status'] = $ext_data['status'];
 		} else {
 			$data['status'] = '';
+		}
+
+		if (isset($this->input->post['hide'])) {
+			$data['hide'] = $this->input->post('hide');
+		} else if (isset($ext_data['hide'])) {
+			$data['hide'] = $ext_data['hide'];
+		} else {
+			$data['hide'] = '';
+		}
+		
+		if (isset($this->input->post['sepPostage'])) {
+			$data['sepPostage'] = $this->input->post('sepPostage');
+		} else if (isset($ext_data['sepPostage'])) {
+			$data['sepPostage'] = $ext_data['sepPostage'];
+		} else {
+			$data['sepPostage'] = '';
+		}
+		
+		if (isset($this->input->post['ncxdebug'])) {
+			$data['ncxdebug'] = $this->input->post('ncxdebug');
+		} else if (isset($ext_data['ncxdebug'])) {
+			$data['ncxdebug'] = $ext_data['ncxdebug'];
+		} else {
+			$data['ncxdebug'] = '';
 		}
 
 		$data['statuses'] = array();

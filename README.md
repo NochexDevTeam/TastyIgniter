@@ -30,7 +30,7 @@ Visit our Knowledgebase for support: https://support.nochex.com/
 * Visual Update to the payment form for when a customer is transferred to the payment page.
 
 
-## 1 # First Release
+## 1 - First Release
 
 * Test Mode - Allows you to test the extension and make sure everything is working correctly. 
 * Product Details - Show ordered items in a structured format on your payment page.

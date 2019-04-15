@@ -3,6 +3,8 @@
 		<div class="row wrap-vertical">
 			<ul id="nav-tabs" class="nav nav-tabs">
 				<li class="active"><a href="#general" data-toggle="tab"><?php echo lang('text_tab_general'); ?></a></li>
+				<li><a href="#statuses" data-toggle="tab">Order Status</a></li>
+				<li><a href="#features" data-toggle="tab">Payment Features</a></li>
 			</ul>
 		</div>
 		<form role="form" id="edit-form" class="form-horizontal" accept-charset="utf-8" method="POST" action="<?php echo current_url(); ?>">
@@ -37,16 +39,26 @@
 							<?php echo form_error('api_mode', '<span class="text-danger">', '</span>'); ?>
 						</div>
 					</div>	
+					
 					<div class="form-group">
-						<label for="input-order-total" class="col-sm-3 control-label"><?php echo lang('label_order_total'); ?>
-							<span class="help-block"><?php echo lang('help_order_total'); ?></span>
-						</label>
+						<label for="input-status" class="col-sm-3 control-label"><?php echo lang('label_status'); ?></label>
 						<div class="col-sm-5">
-							<input type="text" name="order_total" id="input-order-total" class="form-control" value="<?php echo set_value('order_total', $order_total); ?>" />
-							<?php echo form_error('order_total', '<span class="text-danger">', '</span>'); ?>
+							<div class="btn-group btn-group-switch" data-toggle="buttons">
+								<?php if ($status == '1') { ?>
+									<label class="btn btn-danger"><input type="radio" name="status" value="0" <?php echo set_radio('status', '0'); ?>><?php echo lang('text_disabled'); ?></label>
+									<label class="btn btn-success active"><input type="radio" name="status" value="1" <?php echo set_radio('status', '1', TRUE); ?>><?php echo lang('text_enabled'); ?></label>
+								<?php } else { ?>
+									<label class="btn btn-danger active"><input type="radio" name="status" value="0" <?php echo set_radio('status', '0', TRUE); ?>><?php echo lang('text_disabled'); ?></label>
+									<label class="btn btn-success"><input type="radio" name="status" value="1" <?php echo set_radio('status', '1'); ?>><?php echo lang('text_enabled'); ?></label>
+								<?php } ?>
+							</div>
+							<?php echo form_error('status', '<span class="text-danger">', '</span>'); ?>
 						</div>
 					</div>
-					<div class="form-group">
+				</div>
+				
+					<div id="statuses" class="tab-pane row wrap-all">
+										<div class="form-group">
 						<label for="input-order-status" class="col-sm-3 control-label"><?php echo lang('label_order_status'); ?>
 							<span class="help-block"><?php echo lang('help_order_status'); ?></span>
 						</label>
@@ -79,29 +91,77 @@
 							<?php echo form_error('paid_order_status', '<span class="text-danger">', '</span>'); ?>
 						</div>
 					</div>
-					<div class="form-group">
-						<label for="input-priority" class="col-sm-3 control-label"><?php echo lang('label_priority'); ?></label>
-						<div class="col-sm-5">
-							<input type="text" name="priority" id="input-priority" class="form-control" value="<?php echo $priority; ?>" />
-							<?php echo form_error('priority', '<span class="text-danger">', '</span>'); ?>
-						</div>
 					</div>
+					
+					<div id="features" class="tab-pane row wrap-all">
 					<div class="form-group">
-						<label for="input-status" class="col-sm-3 control-label"><?php echo lang('label_status'); ?></label>
+						<label for="input-hide" class="col-sm-3 control-label">Hide Billing Details</label>
 						<div class="col-sm-5">
 							<div class="btn-group btn-group-switch" data-toggle="buttons">
-								<?php if ($status == '1') { ?>
-									<label class="btn btn-danger"><input type="radio" name="status" value="0" <?php echo set_radio('status', '0'); ?>><?php echo lang('text_disabled'); ?></label>
-									<label class="btn btn-success active"><input type="radio" name="status" value="1" <?php echo set_radio('status', '1', TRUE); ?>><?php echo lang('text_enabled'); ?></label>
+								<?php if ($hide == '1') { ?>
+									<label class="btn btn-danger"><input type="radio" name="hide" value="0" <?php echo set_radio('hide', '0'); ?>><?php echo lang('text_disabled'); ?></label>
+									<label class="btn btn-success active"><input type="radio" name="hide" value="1" <?php echo set_radio('hide', '1', TRUE); ?>><?php echo lang('text_enabled'); ?></label>
 								<?php } else { ?>
-									<label class="btn btn-danger active"><input type="radio" name="status" value="0" <?php echo set_radio('status', '0', TRUE); ?>><?php echo lang('text_disabled'); ?></label>
-									<label class="btn btn-success"><input type="radio" name="status" value="1" <?php echo set_radio('status', '1'); ?>><?php echo lang('text_enabled'); ?></label>
+									<label class="btn btn-danger active"><input type="radio" name="hide" value="0" <?php echo set_radio('hide', '0', TRUE); ?>><?php echo lang('text_disabled'); ?></label>
+									<label class="btn btn-success"><input type="radio" name="hide" value="1" <?php echo set_radio('hide', '1'); ?>><?php echo lang('text_enabled'); ?></label>
 								<?php } ?>
 							</div>
-							<?php echo form_error('status', '<span class="text-danger">', '</span>'); ?>
+							<?php echo form_error('hide', '<span class="text-danger">', '</span>'); ?>
 						</div>
 					</div>
-				</div>
+					 	
+					
+					<div class="form-group">
+						<label for="input-sepPostage" class="col-sm-3 control-label">Separate Postage</label>
+						<div class="col-sm-5">
+							<div class="btn-group btn-group-switch" data-toggle="buttons">
+								<?php if ($sepPostage == '1') { ?>
+									<label class="btn btn-danger"><input type="radio" name="sepPostage" value="0" <?php echo set_radio('sepPostage', '0'); ?>><?php echo lang('text_disabled'); ?></label>
+									<label class="btn btn-success active"><input type="radio" name="sepPostage" value="1" <?php echo set_radio('sepPostage', '1', TRUE); ?>><?php echo lang('text_enabled'); ?></label>
+								<?php } else { ?>
+									<label class="btn btn-danger active"><input type="radio" name="sepPostage" value="0" <?php echo set_radio('sepPostage', '0', TRUE); ?>><?php echo lang('text_disabled'); ?></label>
+									<label class="btn btn-success"><input type="radio" name="sepPostage" value="1" <?php echo set_radio('sepPostage', '1'); ?>><?php echo lang('text_enabled'); ?></label>
+								<?php } ?>
+							</div>
+							<?php echo form_error('hide', '<span class="text-danger">', '</span>'); ?>
+						</div>
+					</div>
+
+	
+					<div class="form-group">
+						<label for="input-ncxdebug" class="col-sm-3 control-label">Debugging</label>
+						<div class="col-sm-5">
+							<div class="btn-group btn-group-switch" data-toggle="buttons">
+								<?php if ($ncxdebug == '1') { ?>
+									<label class="btn btn-danger"><input type="radio" name="ncxdebug" value="0" <?php echo set_radio('ncxdebug', '0'); ?>><?php echo lang('text_disabled'); ?></label>
+									<label class="btn btn-success active"><input type="radio" name="ncxdebug" value="1" <?php echo set_radio('ncxdebug', '1', TRUE); ?>><?php echo lang('text_enabled'); ?></label>
+								<?php } else { ?>
+									<label class="btn btn-danger active"><input type="radio" name="ncxdebug" value="0" <?php echo set_radio('ncxdebug', '0', TRUE); ?>><?php echo lang('text_disabled'); ?></label>
+									<label class="btn btn-success"><input type="radio" name="ncxdebug" value="1" <?php echo set_radio('ncxdebug', '1'); ?>><?php echo lang('text_enabled'); ?></label>
+								<?php } ?>
+							</div>
+							<?php echo form_error('hide', '<span class="text-danger">', '</span>'); ?>
+						</div>
+					</div>
+					
+					
+						<div class="form-group">
+							<label for="input-order-total" class="col-sm-3 control-label"><?php echo lang('label_order_total'); ?>
+								<span class="help-block"><?php echo lang('help_order_total'); ?></span>
+							</label>
+							<div class="col-sm-5">
+								<input type="text" name="order_total" id="input-order-total" class="form-control" value="<?php echo set_value('order_total', $order_total); ?>" />
+								<?php echo form_error('order_total', '<span class="text-danger">', '</span>'); ?>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="input-priority" class="col-sm-3 control-label"><?php echo lang('label_priority'); ?></label>
+							<div class="col-sm-5">
+								<input type="text" name="priority" id="input-priority" class="form-control" value="<?php echo $priority; ?>" />
+								<?php echo form_error('priority', '<span class="text-danger">', '</span>'); ?>
+							</div>
+						</div>
+					</div>
 			</div>
 		</form>
 	</div>

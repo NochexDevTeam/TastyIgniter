@@ -3,7 +3,7 @@
         <?php if ($minimum_order_total >= $order_total) { ?>
             <input type="radio" name="payment" value="" <?php echo set_radio('payment', ''); ?> disabled />
         <?php } else if ($payment === $code) { ?>
-            <input type="radio" name="payment" value="<?php echo $code; ?>" <?php echo set_radio('payment', $code, TRUE); ?> />
+            <input type="radio" name="payment" value="<?php echo $code; ?>" <?php echo set_radio('payment', $code, TRUE); ?> checked />
         <?php } else { ?>
             <input type="radio" name="payment" value="<?php echo $code; ?>" <?php echo set_radio('payment', $code); ?> />
         <?php } ?>
